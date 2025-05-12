@@ -6,7 +6,7 @@
 /*   By: akolupae <akolupae@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:36:01 by akolupae          #+#    #+#             */
-/*   Updated: 2025/05/08 11:58:56 by akolupae         ###   ########.fr       */
+/*   Updated: 2025/05/12 19:54:12 by akolupae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*line;
-	char		*buffer;
+	char		*line;
+	static char	buffer[BUFFER_SIZE];
 	char		*temp;
 	size_t		bytes_read;
 	size_t		len;
 	size_t		nline;
 
-
-	buffer = malloc (BUFFER_SIZE * sizeof(char));
-	if (buffer == NULL)
-		return (NULL);
 	while (bytes_read != 0)
 	{
 		bytes_read = read(fd, (void *) buffer, BUFFER_SIZE);
@@ -45,7 +41,7 @@ char	*get_next_line(int fd)
 		len = ft_strlen(line);
 		nline = find_new_line(line);
 		if (nline < len)
-			break;
+			break ;
 	}
 	ft_putstr(line);
 	ft_memmove(line, &line[nline + 1], len - nline);
@@ -104,7 +100,6 @@ char	*ft_memmove(char *dest, char *src, size_t n)
 	}
 	return (dest);
 }
-
 
 void	ft_bzero(char *s, size_t n)
 {

@@ -6,7 +6,7 @@
 /*   By: akolupae <akolupae@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:36:34 by akolupae          #+#    #+#             */
-/*   Updated: 2025/05/13 18:39:48 by akolupae         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:13:25 by akolupae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdbool.h>
 
 char	*get_next_line(int fd);
 

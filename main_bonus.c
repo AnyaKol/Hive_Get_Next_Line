@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akolupae <akolupae@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:45:31 by akolupae          #+#    #+#             */
-/*   Updated: 2025/05/14 16:29:17 by akolupae         ###   ########.fr       */
+/*   Updated: 2025/05/14 20:28:09 by akolupae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,45 @@
 #include <fcntl.h>
 #include "get_next_line.h"
 
-void	print_file(int fd);
+void	print_line(int fd);
 
 int	main(int argc, char **argv)
 {
-	int		fd;
+	int		fd_array[1024];
+	int		i;
 
-	fd = 0;
-	if (argc == 2)
+	printf("Buffer size: %i\n", BUFFER_SIZE);
+	if (argc >= 2)
 	{
-		fd = open(argv[1], O_RDONLY);
-		if (fd < 0)
+		i = 1;
+		while (i < argc)
 		{
-			write(2, "Open error", 10);
-			return (-1);
+			fd_array[i] = open(argv[i], O_RDONLY);
+			printf("\nFD: %i\n", fd_array[i]);
+			print_line(fd_array[i]);
+			i++;
+		}
+		i = 1;
+		while (i < argc)
+		{
+			printf("\nFD: %i\n", fd_array[i]);
+			print_line(fd_array[i]);
+			close(fd_array[i]);
+			i++;
 		}
 	}
-	printf("Buffer size: %i\n", BUFFER_SIZE);
-	print_file(fd);
-	close(fd);
 	return (0);
 }
 
-void	print_file(int fd)
+void	print_line(int fd)
 {
 	char	*line;
 
 	line = get_next_line(fd);
-	while (line != NULL)
+	printf("%s", line);
+	if (line != NULL)
 	{
-		printf("%s", line);
 		free(line);
 		line = NULL;
-		line = get_next_line(fd);
 	}
-	printf("%s", line);
 }

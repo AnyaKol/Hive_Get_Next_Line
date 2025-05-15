@@ -21,6 +21,6 @@
 
 char	*get_next_line(int fd);
 size_t	ft_strlen_new_line(const char *s);
-void	copy_and_erase(char *dest, char *src, size_t n);
+void	ft_copy_and_erase(char *dest, char *src, size_t n);
 
 #endif

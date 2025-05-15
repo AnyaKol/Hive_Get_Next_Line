@@ -71,8 +71,8 @@ static char	*ft_strjoin_and_erase(char *line, char *buffer)
 	temp = malloc(sizeof(char) * (line_len + buffer_len + 1));
 	if (temp == NULL)
 		return (free(line), line = NULL, NULL);
-	copy_and_erase(temp, line, line_len);
-	copy_and_erase(&temp[line_len], buffer, buffer_len);
+	ft_copy_and_erase(temp, line, line_len);
+	ft_copy_and_erase(&temp[line_len], buffer, buffer_len);
 	temp[line_len + buffer_len] = '\0';
 	return (free(line), line = NULL, temp);
 }

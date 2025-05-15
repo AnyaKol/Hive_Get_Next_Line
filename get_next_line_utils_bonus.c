@@ -27,7 +27,7 @@ size_t	ft_strlen_new_line(const char *s)
 	return (len);
 }
 
-void	copy_and_erase(char *dest, char *src, size_t n)
+void	ft_copy_and_erase(char *dest, char *src, size_t n)
 {
 	size_t	i;
 

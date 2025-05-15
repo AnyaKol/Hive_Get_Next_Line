@@ -6,7 +6,7 @@
 /*   By: akolupae <akolupae@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:36:01 by akolupae          #+#    #+#             */
-/*   Updated: 2025/05/14 20:10:36 by akolupae         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:06:32 by akolupae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 static char	*process_buffer(char *buffer, char *line);
 static char	*ft_strjoin_and_erase(char *line, char *buffer);
-void		add_null_to_buffer(char buffer[1024][BUFFER_SIZE + 1]);
 
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	buffer_array[1024][BUFFER_SIZE + 1];
+	static char	buffer_array[50][BUFFER_SIZE + 1];
 	ssize_t		bytes_read;
 
-	add_null_to_buffer(buffer_array);
-	if (fd < 0)
+	if (fd < 0 || fd > 49)
 		return (NULL);
 	line = NULL;
 	line = process_buffer(buffer_array[fd], line);
@@ -46,15 +44,18 @@ static char	*process_buffer(char *buffer, char *line)
 {
 	int		i;
 
-	i = 0;
-	while (i < BUFFER_SIZE)
+	if (buffer != NULL)
 	{
-		if (buffer[i] != 0)
+		i = 0;
+		while (i < BUFFER_SIZE)
 		{
-			line = ft_strjoin_and_erase(line, &buffer[i]);
-			return (line);
+			if (buffer[i] != 0)
+			{
+				line = ft_strjoin_and_erase(line, &buffer[i]);
+				return (line);
+			}
+			i++;
 		}
-		i++;
 	}
 	return (line);
 }
@@ -74,16 +75,4 @@ static char	*ft_strjoin_and_erase(char *line, char *buffer)
 	copy_and_erase(&temp[line_len], buffer, buffer_len);
 	temp[line_len + buffer_len] = '\0';
 	return (free(line), line = NULL, temp);
-}
-
-void	add_null_to_buffer(char buffer[1024][BUFFER_SIZE + 1])
-{
-	int	i;
-
-	i = 0;
-	while (i < 1024)
-	{
-		buffer[i][BUFFER_SIZE] = '\0';
-		i++;
-	}
 }

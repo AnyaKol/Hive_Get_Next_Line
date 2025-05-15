@@ -6,7 +6,7 @@
 /*   By: akolupae <akolupae@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:45:31 by akolupae          #+#    #+#             */
-/*   Updated: 2025/05/14 20:28:09 by akolupae         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:20:27 by akolupae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 		{
 			fd_array[i] = open(argv[i], O_RDONLY);
 			printf("\nFD: %i\n", fd_array[i]);
+			print_line(fd_array[i]);
 			print_line(fd_array[i]);
 			i++;
 		}

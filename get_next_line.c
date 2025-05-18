@@ -18,10 +18,10 @@ static char	*ft_strjoin_and_erase(char *line, char *buffer);
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	buffer[BUFFER_SIZE + 1];
+	static char	buffer[-(BUFFER_SIZE - 1) * (BUFFER_SIZE < 0)
+		+ (BUFFER_SIZE + 1) * (BUFFER_SIZE > 0)];
 	ssize_t		bytes_read;
 
-	buffer[BUFFER_SIZE] = '\0';
 	line = NULL;
 	line = process_buffer(buffer, line);
 	if (line != NULL && line[ft_strlen_new_line(line) - 1] == '\n')

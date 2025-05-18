@@ -18,7 +18,8 @@ static char	*ft_strjoin_and_erase(char *line, char *buffer);
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	buffer_array[50][BUFFER_SIZE + 1];
+	static char	buffer_array[50][-(BUFFER_SIZE - 1) * (BUFFER_SIZE < 0)
+		+ (BUFFER_SIZE + 1) * (BUFFER_SIZE > 0)];
 	ssize_t		bytes_read;
 
 	if (fd < 0 || fd > 49)

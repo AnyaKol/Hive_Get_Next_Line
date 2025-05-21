@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*process_buffer(char *buffer, char *line);
 static char	*ft_strjoin_and_erase(char *line, char *buffer);
